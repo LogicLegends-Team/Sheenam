@@ -32,6 +32,12 @@ namespace Sheenam.Brokers.Storages
 
             return broker.Set<T>();
         }
+        public async ValueTask<T> SelectAsync<T>(params object[] objectsId) where T : class
+        {
+            var broker = new StorageBroker();
+
+            return await broker.FindAsync<T>(objectsId);
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
