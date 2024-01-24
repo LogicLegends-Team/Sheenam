@@ -26,6 +26,12 @@ namespace Sheenam.Brokers.Storages
                 throw ex;
             }
         }
+        public IQueryable<T> SelectAll<T>() where T : class
+        {
+            var broker = new StorageBroker();
+
+            return broker.Set<T>();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
