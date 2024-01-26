@@ -1,6 +1,5 @@
 ﻿using EFxceptions;
 using Microsoft.EntityFrameworkCore;
-using Sheenam.Models.Foundations.Users;
 
 namespace Sheenam.Brokers.Storages
 {
@@ -37,6 +36,15 @@ namespace Sheenam.Brokers.Storages
             var broker = new StorageBroker();
 
             return await broker.FindAsync<T>(objectsId);
+        }
+
+        public async ValueTask<T> UpdateAsync<T>(T @object)
+        {
+            var broker = new StorageBroker();
+            broker.Entry(@object).State = EntityState.Modified;
+            await broker.SaveChangesAsync();
+
+            return @object;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
