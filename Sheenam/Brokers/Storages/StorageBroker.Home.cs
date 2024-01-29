@@ -18,5 +18,8 @@ namespace Sheenam.Brokers.Storages
 
         public async ValueTask<Home> UpdateHomeAsync(Home home) =>
             await UpdateAsync(home);
+
+        public async ValueTask<Home> DeleteHomeAsync(Home home) =>
+            await DeleteAsync(home);
     }
 }
