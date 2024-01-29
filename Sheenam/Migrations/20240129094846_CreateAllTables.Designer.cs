@@ -11,14 +11,50 @@ using Sheenam.Brokers.Storages;
 namespace Sheenam.Migrations
 {
     [DbContext(typeof(StorageBroker))]
-    [Migration("20240124073010_AddUserTable")]
-    partial class AddUserTable
+    [Migration("20240129094846_CreateAllTables")]
+    partial class CreateAllTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
+
+            modelBuilder.Entity("Sheenam.Models.Foundations.Homes.Home", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("HomeType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("UpdatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Homes");
+                });
 
             modelBuilder.Entity("Sheenam.Models.Foundations.Users.User", b =>
                 {
@@ -68,6 +104,22 @@ namespace Sheenam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Sheenam.Models.Foundations.Homes.Home", b =>
+                {
+                    b.HasOne("Sheenam.Models.Foundations.Users.User", "User")
+                        .WithMany("UserHomes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Sheenam.Models.Foundations.Users.User", b =>
+                {
+                    b.Navigation("UserHomes");
                 });
 #pragma warning restore 612, 618
         }
