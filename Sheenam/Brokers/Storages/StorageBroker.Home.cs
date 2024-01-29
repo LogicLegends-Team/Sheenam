@@ -12,5 +12,8 @@ namespace Sheenam.Brokers.Storages
 
         public IQueryable<Home> SelectAllHomes() =>
             SelectAll<Home>();
+
+        public async ValueTask<Home> SelectHomeByIdAsync(Guid id) =>
+            await SelectAsync<Home>(id);
     }
 }
