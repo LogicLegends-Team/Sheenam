@@ -6,5 +6,8 @@ namespace Sheenam.Brokers.Storages
     public partial class StorageBroker
     {
         public DbSet<ImageMetadata> ImageMetadatas { get; set; }
+
+        public async ValueTask<ImageMetadata> InsertHomeAsync(ImageMetadata imageMetadata) =>
+            await this.InsertAsync(imageMetadata);
     }
 }
