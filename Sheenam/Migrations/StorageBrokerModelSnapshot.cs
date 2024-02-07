@@ -15,11 +15,15 @@ namespace Sheenam.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true);
 
             modelBuilder.Entity("Sheenam.Models.Foundations.Homes.Home", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("HomeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -44,11 +48,44 @@ namespace Sheenam.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("HomeId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Homes");
+                });
+
+            modelBuilder.Entity("Sheenam.Models.Foundations.ImageMetadatas.ImageMetadata", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Format")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid?>("HomeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsUserAvatar")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<float>("Size")
+                        .HasColumnType("REAL");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HomeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ImageMetadatas");
                 });
 
             modelBuilder.Entity("Sheenam.Models.Foundations.Users.User", b =>
@@ -100,8 +137,30 @@ namespace Sheenam.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Sheenam.Models.Foundations.ImageMetadatas.ImageMetadata", b =>
+                {
+                    b.HasOne("Sheenam.Models.Foundations.Homes.Home", "Home")
+                        .WithMany("ImageMetadata")
+                        .HasForeignKey("HomeId");
+
+                    b.HasOne("Sheenam.Models.Foundations.Users.User", "User")
+                        .WithMany("ImageMetadata")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Home");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Sheenam.Models.Foundations.Homes.Home", b =>
+                {
+                    b.Navigation("ImageMetadata");
+                });
+
             modelBuilder.Entity("Sheenam.Models.Foundations.Users.User", b =>
                 {
+                    b.Navigation("ImageMetadata");
+
                     b.Navigation("UserHomes");
                 });
 #pragma warning restore 612, 618

@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using Sheenam.Models.Foundations.Homes;
+using Sheenam.Models.Foundations.ImageMetadatas;
 
 namespace Sheenam.Models.Foundations.Users
 {
@@ -17,5 +18,7 @@ namespace Sheenam.Models.Foundations.Users
         public Role Role { get; set; }
         [JsonIgnore]
         public virtual ICollection<Home> UserHomes { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<ImageMetadata> ImageMetadata { get; set; }
     }
 }
