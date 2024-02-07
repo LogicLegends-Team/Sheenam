@@ -18,20 +18,6 @@ AddFoundationServices(builder);
 AddProccessingServices(builder);
 AddOrchestrationServices(builder);
 
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-
-app.Run();
-
 static void AddOrchestrationServices(WebApplicationBuilder builder)
 {
     builder.Services.AddTransient<IUserOrchestrationService, UserOrchestrationService>();
@@ -55,3 +41,18 @@ static void AddBrokers(WebApplicationBuilder builder)
     builder.Services.AddTransient<IStorageBroker, StorageBroker>();
     builder.Services.AddTransient<ITokenBroker, TokenBroker>();
 }
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+app.UseStaticFiles();
+
+app.Run();

@@ -37,7 +37,7 @@ namespace Sheenam.Controllers
         [HttpPut]
         public async ValueTask<ActionResult<Home>> PutHome(Home home) =>
             await this.homeOrchestrationService.ModifyHomeAsync(home);
-        
+
         [HttpDelete]
         public async ValueTask<ActionResult<Home>> DeleteHome(Guid id) =>
             await this.homeOrchestrationService.RemoveHomeAsync(id);
