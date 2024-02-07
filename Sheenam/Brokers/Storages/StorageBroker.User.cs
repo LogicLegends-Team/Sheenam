@@ -13,8 +13,14 @@ namespace Sheenam.Brokers.Storages
         public IQueryable<User> SelectAllUsers() =>
             SelectAll<User>();
 
-        public async ValueTask<User> SelectUserByIdAsync(Guid id) =>
-            await SelectAsync<User>(id);
+        public async ValueTask<User> SelectUserByIdAsync(Guid userId)
+        {
+            var user = await this.Users
+                .Include(u => u.UserHomes)
+                .FirstOrDefaultAsync(u => u.UserId == userId);
+
+            return user;
+        }
 
         public async ValueTask<User> UpdateUserAsync(User user) =>
             await UpdateAsync(user);

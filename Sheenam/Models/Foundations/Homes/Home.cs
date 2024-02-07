@@ -14,6 +14,6 @@ namespace Sheenam.Models.Foundations.Homes
         public DateTimeOffset UpdatedDate { get; set; }
         public Guid UserId { get; set; }
         [JsonIgnore]
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

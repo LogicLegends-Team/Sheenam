@@ -25,12 +25,14 @@ namespace Sheenam.Brokers.Storages
                 throw ex;
             }
         }
+
         public IQueryable<T> SelectAll<T>() where T : class
         {
             var broker = new StorageBroker();
 
             return broker.Set<T>();
         }
+
         public async ValueTask<T> SelectAsync<T>(params object[] objectsId) where T : class
         {
             var broker = new StorageBroker();
@@ -60,6 +62,7 @@ namespace Sheenam.Brokers.Storages
         {
             string connectionString = "Data source = Sheenam.db";
             optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseSqlite(connectionString);
         }
 
