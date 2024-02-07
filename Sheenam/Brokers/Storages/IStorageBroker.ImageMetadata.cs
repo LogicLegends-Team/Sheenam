@@ -6,5 +6,6 @@ namespace Sheenam.Brokers.Storages
     {
         ValueTask<ImageMetadata> InsertHomeAsync(ImageMetadata imageMetadata);
         IQueryable<ImageMetadata> SelectAllImageMetadatas();
+        ValueTask<ImageMetadata> SelectImageMetadataByIdAsync(Guid id);
     }
 }

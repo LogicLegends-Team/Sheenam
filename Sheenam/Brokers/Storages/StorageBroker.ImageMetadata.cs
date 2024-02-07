@@ -12,5 +12,8 @@ namespace Sheenam.Brokers.Storages
 
         public IQueryable<ImageMetadata> SelectAllImageMetadatas() =>
             this.SelectAll<ImageMetadata>();
+
+        public async ValueTask<ImageMetadata> SelectImageMetadataByIdAsync(Guid id) =>
+            await this.SelectAsync<ImageMetadata>(id);
     }
 }
