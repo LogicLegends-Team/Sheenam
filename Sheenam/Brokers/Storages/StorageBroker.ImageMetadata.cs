@@ -9,5 +9,8 @@ namespace Sheenam.Brokers.Storages
 
         public async ValueTask<ImageMetadata> InsertHomeAsync(ImageMetadata imageMetadata) =>
             await this.InsertAsync(imageMetadata);
+
+        public IQueryable<ImageMetadata> SelectAllImageMetadatas() =>
+            this.SelectAll<ImageMetadata>();
     }
 }
