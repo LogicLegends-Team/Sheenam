@@ -18,5 +18,8 @@ namespace Sheenam.Brokers.Storages
 
         public async ValueTask<ImageMetadata> UpdateImageMetadataAsync(ImageMetadata imageMetadata) =>
             await this.UpdateAsync(imageMetadata);
+
+        public async ValueTask<ImageMetadata> DeleteImageMetadataAsync(ImageMetadata imageMetadata) =>
+    await this.DeleteAsync(imageMetadata);
     }
 }

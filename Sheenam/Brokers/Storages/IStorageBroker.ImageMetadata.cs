@@ -8,5 +8,6 @@ namespace Sheenam.Brokers.Storages
         IQueryable<ImageMetadata> SelectAllImageMetadatas();
         ValueTask<ImageMetadata> SelectImageMetadataByIdAsync(Guid id);
         ValueTask<ImageMetadata> UpdateImageMetadataAsync(ImageMetadata imageMetadata);
+        ValueTask<ImageMetadata> DeleteImageMetadataAsync(ImageMetadata imageMetadata);
     }
 }
