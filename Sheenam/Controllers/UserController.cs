@@ -5,6 +5,8 @@ using Sheenam.Services.Orchestrations.Users;
 
 namespace Sheenam.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class UserController : RESTFulController
     {
         private readonly IUserOrchestrationService userOrchestrationService;
@@ -14,6 +16,10 @@ namespace Sheenam.Controllers
         {
             this.userOrchestrationService = userOrchestrationService;
         }
+
+        [HttpPost]
+        public async ValueTask<ActionResult<User>> PostUser(User user) =>
+            await this.userOrchestrationService.AddUserAsync(user);
 
         [HttpGet]
         public ActionResult<IQueryable<User>> GelAllUsers()
