@@ -11,10 +11,12 @@ namespace Sheenam.Brokers.Storages
             await InsertAsync(home);
 
         public IQueryable<Home> SelectAllHomes() =>
-            SelectAll<Home>();
+             this.Homes.Include(home => home.ImageMetadata);
 
-        public async ValueTask<Home> SelectHomeByIdAsync(Guid id) =>
-            await SelectAsync<Home>(id);
+        public async ValueTask<Home> SelectHomeByIdAsync(Guid homeId) =>
+             await this.Homes.Include(u => u.ImageMetadata)
+                    .FirstOrDefaultAsync(u => u.UserId == homeId);
+
 
         public async ValueTask<Home> UpdateHomeAsync(Home home) =>
             await UpdateAsync(home);
