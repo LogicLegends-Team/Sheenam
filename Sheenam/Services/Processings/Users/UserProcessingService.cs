@@ -26,7 +26,7 @@ namespace Sheenam.Services.Processings.Users
 
         public async ValueTask<User> RemoveUserByIdAsync(Guid id)
         {
-            var mayBeUser = 
+            var mayBeUser =
                 await this.userService.RetrieveUserByIdAsync(id);
 
             return await this.userService.RemoveUserAsync(mayBeUser);

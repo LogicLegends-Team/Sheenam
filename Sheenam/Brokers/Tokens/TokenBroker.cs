@@ -1,9 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using Sheenam.Models.Foundations.Tokens;
-using Sheenam.Models.Foundations.Users;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Sheenam.Models.Foundations.Tokens;
+using Sheenam.Models.Foundations.Users;
 
 namespace Sheenam.Brokers.Tokens
 {

@@ -26,7 +26,7 @@ namespace Sheenam.Services.Processings.Homes
 
         public async ValueTask<Home> RemoveHomeByIdAsync(Guid id)
         {
-            var home = 
+            var home =
                 await this.homeService.RetrieveHomeByIdAsync(id);
 
             return await this.homeService.RemoveHomeAsync(home);
