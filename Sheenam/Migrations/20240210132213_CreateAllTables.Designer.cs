@@ -11,8 +11,8 @@ using Sheenam.Brokers.Storages;
 namespace Sheenam.Migrations
 {
     [DbContext(typeof(StorageBroker))]
-    [Migration("20240207105813_CreateAllTabless")]
-    partial class CreateAllTabless
+    [Migration("20240210132213_CreateAllTables")]
+    partial class CreateAllTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,14 +64,14 @@ namespace Sheenam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("FilePath")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Format")
                         .HasColumnType("INTEGER");
 
                     b.Property<Guid?>("HomeId")
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsUserAvatar")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
@@ -146,13 +146,11 @@ namespace Sheenam.Migrations
                         .WithMany("ImageMetadata")
                         .HasForeignKey("HomeId");
 
-                    b.HasOne("Sheenam.Models.Foundations.Users.User", "User")
+                    b.HasOne("Sheenam.Models.Foundations.Users.User", null)
                         .WithMany("ImageMetadata")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Home");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Sheenam.Models.Foundations.Homes.Home", b =>

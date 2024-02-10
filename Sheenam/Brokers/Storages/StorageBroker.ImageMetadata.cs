@@ -7,19 +7,19 @@ namespace Sheenam.Brokers.Storages
     {
         public DbSet<ImageMetadata> ImageMetadatas { get; set; }
 
-        public async ValueTask<ImageMetadata> InsertHomeAsync(ImageMetadata imageMetadata) =>
-            await this.InsertAsync(imageMetadata);
+        public async ValueTask<ImageMetadata> InsertImageMetadataAsync(ImageMetadata imageMetadata) =>
+            await InsertAsync(imageMetadata);
 
         public IQueryable<ImageMetadata> SelectAllImageMetadatas() =>
-            this.SelectAll<ImageMetadata>();
+            SelectAll<ImageMetadata>();
 
         public async ValueTask<ImageMetadata> SelectImageMetadataByIdAsync(Guid id) =>
-            await this.SelectAsync<ImageMetadata>(id);
+            await SelectAsync<ImageMetadata>(id);
 
         public async ValueTask<ImageMetadata> UpdateImageMetadataAsync(ImageMetadata imageMetadata) =>
-            await this.UpdateAsync(imageMetadata);
+            await UpdateAsync(imageMetadata);
 
         public async ValueTask<ImageMetadata> DeleteImageMetadataAsync(ImageMetadata imageMetadata) =>
-    await this.DeleteAsync(imageMetadata);
+    await DeleteAsync(imageMetadata);
     }
 }

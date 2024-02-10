@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Sheenam.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateAllTabless : Migration
+    public partial class CreateAllTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -63,9 +63,9 @@ namespace Sheenam.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Size = table.Column<float>(type: "REAL", nullable: false),
                     Format = table.Column<int>(type: "INTEGER", nullable: false),
-                    IsUserAvatar = table.Column<bool>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    HomeId = table.Column<Guid>(type: "TEXT", nullable: true)
+                    FilePath = table.Column<string>(type: "TEXT", nullable: true),
+                    HomeId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    UserId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
