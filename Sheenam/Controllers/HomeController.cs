@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RESTFulSense.Controllers;
+using Sheenam.Brokers.Storages;
 using Sheenam.Models.Foundations.Homes;
 using Sheenam.Services.Orchestrations.Homes;
 
@@ -22,13 +24,8 @@ namespace Sheenam.Controllers
             await this.homeOrchestrationService.AddHomeAsync(home);
 
         [HttpGet]
-        public ActionResult<IQueryable<Home>> GelAllHomes()
-        {
-            IQueryable<Home> allHomes =
-                this.homeOrchestrationService.RetrieveAllHomes();
-
-            return Ok(allHomes);
-        }
+        public async Task<ActionResult<List<Home>>> GetAllHomes() =>
+            await this.homeOrchestrationService.RetrieveAllHomesAsync();
 
         [HttpGet("ById")]
         public async ValueTask<ActionResult<Home>> GetHomeByIdAsync(Guid id) =>

@@ -13,8 +13,8 @@ namespace Sheenam.Services.Orchestrations.Homes
             this.homeProcessingService = homeProcessingService;
         }
 
-        public IQueryable<Home> RetrieveAllHomes() =>
-            this.homeProcessingService.RetrieveAllHomes();
+        public async Task<List<Home>> RetrieveAllHomesAsync() =>
+            await this.homeProcessingService.RetrieveAllHomesAsync();
 
         public async ValueTask<Home> RetrieveHomeByIdAsync(Guid id) =>
             await this.homeProcessingService.RetrieveHomeByIdAsync(id);

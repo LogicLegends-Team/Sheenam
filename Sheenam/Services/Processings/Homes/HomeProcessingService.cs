@@ -15,8 +15,8 @@ namespace Sheenam.Services.Processings.Homes
         public async ValueTask<Home> AddHomeAsync(Home home) =>
             await this.homeService.AddHomeAsync(home);
 
-        public IQueryable<Home> RetrieveAllHomes() =>
-            this.homeService.RetrieveAllHomes();
+        public async Task<List<Home>> RetrieveAllHomesAsync() =>
+            await this.homeService.RetrieveAllHomesAsync();
 
         public async ValueTask<Home> RetrieveHomeByIdAsync(Guid id) =>
             await this.homeService.RetrieveHomeByIdAsync(id);
