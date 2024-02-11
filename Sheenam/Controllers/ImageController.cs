@@ -34,5 +34,11 @@ namespace Sheenam.Controllers
 
             return Ok(imagePath);
         }
+
+        [HttpDelete]
+        public ActionResult<ValueTask<string>> DeleteImage(Guid imageId)
+        {
+            return this.imageFileOrchestrationService.RemoveImageFileByIdAsync(imageId);
+        }
     }
 }

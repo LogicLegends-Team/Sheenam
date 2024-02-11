@@ -26,5 +26,20 @@ namespace Sheenam.Services.Processings.File
 
             return await this.fileService.UploadFileAsync(memoryStream, fileName, uploadsFolder);
         }
+
+        public string DeleteImageFile(string imageName)
+        {
+            string filePath = Path.Combine("wwwroot\\images", imageName);
+
+            if (System.IO.File.Exists(filePath))
+            {
+                this.fileService.RemoveImageFile(filePath);
+                return "Image deleted successfully.";
+            }
+            else
+            {
+                return "Image not found.";
+            }
+        }
     }
 }
