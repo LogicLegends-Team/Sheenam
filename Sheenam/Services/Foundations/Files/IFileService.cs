@@ -2,6 +2,7 @@
 {
     public interface IFileService
     {
+        Task RemoveImageFile(string filePath);
         ValueTask<string> UploadFileAsync(
             MemoryStream memoryStream, 
             string fileName, string uploadsFolder);

@@ -46,9 +46,14 @@ namespace Sheenam.Services.Orchestrations.Images
             return imageMetadata.FilePath;
         }
 
-        public ValueTask<ImageMetadata> RemoveImageFileByIdAsync(Guid id)
+        public async ValueTask<string> RemoveImageFileByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            ImageMetadata image = 
+                await this.imageMetadtaProcessingService.RetrieveImageMetadataByIdAsync(id);
+
+            await this.imageMetadtaProcessingService.RemoveImageMetadataByIdAsync(id);
+
+            return this.fileProcessingService.DeleteImageFile(image.Name);
         }
     }
 }

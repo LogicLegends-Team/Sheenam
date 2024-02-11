@@ -5,9 +5,8 @@
         public async ValueTask<string> SaveFileAsync(
             MemoryStream memoryStream, string fileName, string uploadsFolder)
         {
-            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-            var relativePath = Path.Combine("images", uniqueFileName);
+            string filePath = Path.Combine(uploadsFolder, fileName);
+            var relativePath = Path.Combine("images", fileName);
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
@@ -16,6 +15,13 @@
             }
 
             return relativePath;
+        }
+
+        public Task DeleteImageFile(string filePath)
+        {
+            System.IO.File.Delete(filePath);
+
+            return Task.CompletedTask;
         }
     }
 }
